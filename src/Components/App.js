@@ -1,29 +1,31 @@
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline, Grid } from '@material-ui/core';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Todo from './Todo/Todo.js';
-import React, { useState } from 'react';
-import LogIn from './LogIn/LogIn';
-import Register from './Register/Register';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { CssBaseline, Grid } from "@material-ui/core";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Todo from "./Todo/Todo.js";
+import React, { useState, useEffect } from "react";
+import LogIn from "./LogIn/LogIn";
+import Register from "./Register/Register";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 
 // Create a theme instance based on user
 
 const App = () => {
     const [prefersDarkMode, setPrefersDarkMode] = useState(
-        window.matchMedia('(prefers-color-scheme: dark)')
+        window.matchMedia("(prefers-color-scheme: dark)")
     );
     const theme = React.useMemo(
         () =>
             createMuiTheme({
                 palette: {
-                    type: prefersDarkMode ? 'dark' : 'light',
+                    type: prefersDarkMode ? "dark" : "light",
                 },
             }),
         [prefersDarkMode]
     );
-
+    useEffect(() => {
+        document.title = "Organizer";
+    }, []);
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
