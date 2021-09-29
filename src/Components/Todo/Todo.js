@@ -1,27 +1,27 @@
-import TaskList from './TaskList/TaskList.js';
-import TaskForm from './TaskForm/TaskForm.js';
-import SuccessSnackbar from '../SnackBars/SuccessSnackbar';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import TaskList from "./TaskList/TaskList.js";
+import TaskForm from "./TaskForm/TaskForm.js";
+import SuccessSnackbar from "../SnackBars/SuccessSnackbar";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 import {
     Paper,
     Typography,
     Grid,
     CircularProgress,
     Container,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import todoStyle from '../../Styles/todoStyle';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import todoStyle from "../../Styles/todoStyle";
 
 const Todo = ({ prefersDarkMode, setPrefersDarkMode }) => {
     const [tasks, setTasks] = useState();
     const [currentTask, setCurrentTask] = useState();
     const [updatePage, setUpdatePage] = useState(false);
-    const minHeight = '55vh';
-    const maxHeight = '55vh';
-    const minWidth = '20vw';
+    const minHeight = "55vh";
+    const maxHeight = "55vh";
+    const minWidth = "20vw";
 
     const useStyles = makeStyles(todoStyle);
     const classes = useStyles();
@@ -30,7 +30,7 @@ const Todo = ({ prefersDarkMode, setPrefersDarkMode }) => {
     };
 
     async function fetchData() {
-        const url = 'http://localhost:4000/tasks';
+        const url = "https://organizer-mern.herokuapp.com/tasks";
         try {
             const response = await axios.get(url, { crossdomain: true });
             setTasks(response.data.tasks);
